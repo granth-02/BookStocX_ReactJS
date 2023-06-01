@@ -1,33 +1,200 @@
 import styled from "styled-components";
+import { auth, provider } from "../firebase";
+import { signInWithPopup } from "firebase/auth";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { selectUserEmail, selectUserName, selectUserPhoto, setSignOutState, setUserLoginDetails } from "../features/userSlice";
+import { useEffect } from "react";
 
-const Navbar = () => {
+const Navbar = (props) => {
+    const dispatch = useDispatch();
+    const history = useNavigate();
+    const userName = useSelector(selectUserName);
+    const userEmail = useSelector(selectUserEmail)
+    const userPhoto = useSelector(selectUserPhoto);
+
+    const setUser = (user) => {
+        dispatch(
+            setUserLoginDetails({
+                name: user.displayName,
+                email: user.email,
+                photo: user.photoURL
+            })
+        )
+    }
+
+    useEffect(() => {
+        auth.onAuthStateChanged(async (user) => {
+          if (user) {
+            setUser(user);
+            history("/home");
+          }
+        });
+      }, [userName]);
+
+    const handleAuth = () => {
+        if(!userName){
+            
+            signInWithPopup(auth,provider)
+            .then((result) => {
+                setUser(result.user);
+            })
+            .catch((error) => {
+                alert(error.messsage);
+            }
+            )
+        }
+        else if(userName){
+            auth
+                .signOut().then(() => {
+                    dispatch(setSignOutState());
+                    history('/')
+                    
+                })
+        }
+        
+    };
+
+
     return(
-        <Navi>
-            <a href="/app">Home</a>
-            <a href="/">Exchange Books</a>
-            <a href="/">Blogs</a>
-            <a href="/">Library</a>
-            <a href="/">Feedback</a>
-            <a href="/">About Us</a>
-        </Navi>
+        <Nav>
+            <Logo>
+                BookStocX
+            </Logo>
+            <Bar>
+                <a class="active" href="/home">
+                    <span>Home</span>
+                </a>
+                <a href="/">
+                    <span>Exchange</span>
+                </a>
+                <a href="/">
+                    <span>Blogs</span>
+                </a>
+                <a href="/">
+                    <span>Library</span>
+                </a>
+                <a href="/">
+                    <span>About Us</span>
+                </a>
+                <a href="/">
+                    <span>Feedback</span>
+                </a>
+            </Bar>
+            {!userName ? (
+            <Login onClick={handleAuth}>Login</Login>
+             ) : (
+                <UserImg>
+                    <img src={(userPhoto)} alt="profile-pic" />
+                </UserImg>
+             )}
+
+        </Nav>
     )
 }
 
-const Navi = styled.nav`
-    font-size: 25px;
-    background: rgb(138,91,139);
-    background: linear-gradient(45deg, rgba(138,91,139,1) 0%, rgba(253,201,195,1) 2%, rgba(255,203,196,1) 50%, rgba(255,203,196,1) 98%, rgba(130,84,135,1) 100%);
+const Nav = styled.nav`
     display: flex;
-    position: relative;
+    position: fixed;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 3;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 80px;
+    background-color:  #5a3b5c;
+`
+
+const Logo = styled.a`
+    font-size: 50px;
+    color: #ffccc4;
+`
+const Bar = styled.div`
+    display: flex;
+    align-items: center;
     flex-flow: row nowrap;
+    height: 100%;
+    justify-content: flex-end;
+    padding: 0px;
+    position: relative;
+    margin-right: auto;
+    margin-left: 55px;
 
     a{
-        font-family: 'Titillium Web', sans-serif;
-        color:#fefbf6;
-        transition:0.3s;
-        text-decoration:none;
+        display: flex;
+        align-items: center;
+        padding: 0 10px;
+        
+        span{
+        color: rgb(249, 249, 249);
+        font-size: 16px;
+        letter-spacing: 1.42px;
+        line-height: 1.08;
+        padding: 2px 0px;
+        white-space: nowrap;
+        position: relative;
+
+            &:before{
+                background-color: #ffccc4;
+                border-radius: 0px 0px 4px 4px;
+                bottom: -6px;
+                content: "";
+                height: 2px;
+                left: 0px;
+                opacity: 0;
+                position: absolute;
+                right: 0px;
+                transform-origin: left center;
+                transform: scaleX(0);
+                transition: all 250ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 0s;
+                visibility: hidden;
+                width: auto;
+            }
+        }
+        &:hover{
+        span:before{
+            transform: scaleX(1);
+            visibility: visible;
+            opacity: 1;
+            
+            
+        }
+    }
     }
 
+    @media (max-width: 800px) {
+        display: none;
+    }
+
+`
+
+const Login = styled.a`
+    background-color:  #5a3b5c;
+    color: #ffccc4;
+    padding: 20px 24px;
+    text-transform: capitalize;
+    letter-spacing: 1.5px;
+    margin-left: auto;
+    margin-right: 10px;
+    border-radius: 0px;
+    transition: all 0.5s ease 0s;
+    font-size: 20px;
+
+    &:hover {
+        background-color: #ffccc4;
+        color : #5a3b5c;
+        border-color: transparent;
+    }
+`
+const UserImg = styled.div`
+    img{
+        border-radius: 50%;
+        height: 70px;
+        margin-right: 5px;
+    }
+    
+    
 `
 
 export default Navbar;
