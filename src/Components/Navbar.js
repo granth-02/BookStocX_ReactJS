@@ -86,6 +86,9 @@ const Navbar = (props) => {
              ) : (
                 <UserImg>
                     <img src={(userPhoto)} alt="profile-pic" />
+                    <DropDown>
+                        <span onClick={handleAuth}>Sign Out</span>
+                    </DropDown>
                 </UserImg>
              )}
 
@@ -195,6 +198,26 @@ const UserImg = styled.div`
     }
     
     
+`
+const DropDown = styled.div`
+    top: 48px;
+    position: absolute;
+    right: 0px;
+    background: rgb(19, 19, 19);
+    border: 1px solid rgba(151, 151, 151, 0.34);
+    border-radius: 4px;
+    box-shadow: rgb(0 0 0 / 50%) 0px 0px 18px 0px;
+    padding: 10px;
+    font-size: 14px;
+    letter-spacing: 1px;
+    width: 89px;
+    opacity: 0;
+
+    &:hover{
+        
+        opacity: 1;
+        transition-duration: 1s;
+    }
 `
 
 export default Navbar;
