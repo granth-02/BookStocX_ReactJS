@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { selectUserEmail, selectUserName, selectUserPhoto, setSignOutState, setUserLoginDetails } from "../features/userSlice";
 import { useEffect } from "react";
+import{ BsFillBookmarkHeartFill } from 'react-icons/bs'
+
 
 const Navbar = (props) => {
     const dispatch = useDispatch();
@@ -84,7 +86,9 @@ const Navbar = (props) => {
             {!userName ? (
             <Login onClick={handleAuth}>Login</Login>
              ) : (
+                
                 <UserImg>
+                    <Cart size={40}/>
                     <img src={(userPhoto)} alt="profile-pic" />
                     <DropDown>
                         <span onClick={handleAuth}>Sign Out</span>
@@ -218,6 +222,17 @@ const DropDown = styled.div`
         opacity: 1;
         transition-duration: 1s;
     }
+`
+
+const Cart = styled(BsFillBookmarkHeartFill)`
+    cursor: pointer;
+    margin-right: 25px;
+    color: #ffccc4;
+    margin-bottom: 15px;
+    transition: all 250ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+     &:hover{
+        transform: scale(1.2);
+     }
 `
 
 export default Navbar;

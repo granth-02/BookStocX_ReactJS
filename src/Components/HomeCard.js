@@ -37,6 +37,7 @@ const Card = styled.div`
 
     @media (max-width: 769px){
         grid-template-columns: repeat(1, minmax(0, 1fr));
+        
     }
 `
 
