@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { selectUserEmail, selectUserName, selectUserPhoto, setSignOutState, setUserLoginDetails } from "../features/userSlice";
 import { useEffect } from "react";
 import{ BsFillBookmarkHeartFill } from 'react-icons/bs'
+import Home from "./Home";
 
 
 const Navbar = (props) => {
@@ -29,7 +30,7 @@ const Navbar = (props) => {
         auth.onAuthStateChanged(async (user) => {
           if (user) {
             setUser(user);
-            history("/home");
+           
           }
         });
       }, [userName]);
@@ -73,7 +74,7 @@ const Navbar = (props) => {
                 <a href="/">
                     <span>Blogs</span>
                 </a>
-                <a href="/">
+                <a href="/library">
                     <span>Library</span>
                 </a>
                 <a href="/">
@@ -87,6 +88,7 @@ const Navbar = (props) => {
             <Login onClick={handleAuth}>Login</Login>
              ) : (
                 
+                <>
                 <UserImg>
                     <Cart size={40}/>
                     <img src={(userPhoto)} alt="profile-pic" />
@@ -94,9 +96,12 @@ const Navbar = (props) => {
                         <span onClick={handleAuth}>Sign Out</span>
                     </DropDown>
                 </UserImg>
-             )}
+                
+                </>
+             )}</Nav>
+             
 
-        </Nav>
+        
     )
 }
 
@@ -166,8 +171,11 @@ const Bar = styled.div`
             opacity: 1;
             
             
+            }
         }
-    }
+        &:active{
+            background-color: red;
+        }
     }
 
     @media (max-width: 800px) {
