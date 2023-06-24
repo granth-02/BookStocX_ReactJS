@@ -100,6 +100,7 @@ const Navbar = (props) => {
                 </>
              )}</Nav>
              
+             
 
         
     )
@@ -173,9 +174,7 @@ const Bar = styled.div`
             
             }
         }
-        &:active{
-            background-color: red;
-        }
+       
     }
 
     @media (max-width: 800px) {
