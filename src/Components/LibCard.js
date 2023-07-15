@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import book from "./lib.json";
 
 const LibCard = (props) => {
   const openPdf = (pdfUrl) => {
@@ -143,7 +144,7 @@ const Card = styled.div`
   gap: 30px;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   background-color: #fefbf6;
-  margin-top: 30px;
+  margin-top: 40px;
   margin-left: 10px;
   margin-right: 10px;
   margin-bottom: 30px;
