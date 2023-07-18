@@ -91,7 +91,7 @@ const Navbar = (props) => {
                 <>
                 <UserImg>
                     <Cart size={40}/>
-                    <img src={(userPhoto)} alt="profile-pic" />
+                    <img src={(userPhoto)} alt={userName} />
                     <DropDown>
                         <span onClick={handleAuth}>Sign Out</span>
                     </DropDown>
@@ -223,6 +223,8 @@ const DropDown = styled.div`
     letter-spacing: 1px;
     width: 89px;
     opacity: 0;
+    color: white;
+    cursor: pointer;
 
     &:hover{
         

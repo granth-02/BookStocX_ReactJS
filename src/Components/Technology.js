@@ -1,9 +1,9 @@
 import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import styled from "styled-components"
-import LibCard from "./LibCard";
+import TechCard from "./TechCard";
 
 
-const Library = (props) => {
+const Technology = (props) => {
     return(
         <div>
             
@@ -12,11 +12,11 @@ const Library = (props) => {
                     <a href="Fiction.html">Fiction</a>
                     <a href="Non-Fiction.html">Non-Fiction</a>
                     <a href="Autobio.html">Biography</a>
-                    <a href="/technology">Technology</a>
-                    <a class="active" href="/library">All</a>
+                    <a class="active" href="/technology">Technology</a>
+                    <a href="/library">All</a>
                 </Genre>
-                <h1>Library</h1>
-                <LibCard />
+                <h1>Technology</h1>
+                <TechCard />
             </Libgrid>
             
         </div>
@@ -79,4 +79,4 @@ const Genre = styled.div`
 `
 
 
-export default Library;
+export default Technology;
