@@ -37,13 +37,13 @@ const Libgrid = styled.div`
 const Genre = styled.div`
     display: flex;
     align-items: center;
-    width: 60%;
-    height: 100px;
-    padding: 50x;
-    margin-top: 50px;
+    width: 65vw;
+    height: 14vh;
+    padding: 3.25vw;
+    margin-top: 3.25vw;
     margin-right: auto;
     margin-left: auto;
-    margin-bottom: 10px;
+    margin-bottom: 0.6510416666666666vw;
     background-color: #a4cbe2;
     border-radius: 2px;
     
@@ -51,9 +51,9 @@ const Genre = styled.div`
     a{
         display: flex;
         align-items: center;
-        font-size: 30px;
+        font-size: 1.95vw;
         text-align: center;
-        padding: 30px;
+        padding: 1.953125vw;
         text-decoration:none;
         color:  #7F5283;
         transition:0.2s;

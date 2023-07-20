@@ -4,6 +4,7 @@ import Navbar from './Components/Navbar';
 import Home from './Components/Home';
 import Library from './Components/Library';
 import Technology from './Components/Technology';
+import Welcome from './Components/Welcome';
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <Router>
       <Navbar />
         <Routes>
+          <Route exact path='/' element={<Welcome />} />
           <Route exact path='/home' element={<Home/>} />
           <Route exact path='/library' element={<Library/>} />
           <Route exact path='/technology' element={<Technology />} />

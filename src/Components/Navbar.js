@@ -60,6 +60,7 @@ const Navbar = (props) => {
 
 
     return(
+        <div>
         <Nav>
             <Logo>
                 BookStocX
@@ -94,12 +95,17 @@ const Navbar = (props) => {
                     <img src={(userPhoto)} alt={userName} />
                     <DropDown>
                         <span onClick={handleAuth}>Sign Out</span>
+                        <span> Profile</span>
                     </DropDown>
                 </UserImg>
                 
                 </>
              )}</Nav>
-             
+             {/* <Welcome>
+                <img src="https://free4kwallpapers.com/uploads/originals/2019/12/17/painted-library-wallpaper.jpg" />
+                <span>WELCOME</span>
+             </Welcome> */}
+             </div>
              
 
         
@@ -242,6 +248,28 @@ const Cart = styled(BsFillBookmarkHeartFill)`
      &:hover{
         transform: scale(1.2);
      }
+`
+
+const Welcome = styled.div`
+    img{
+        width: 100vw;
+        margin-top: 80px;
+        z-index: -1;
+        
+    }
+    span{
+        display: flex;
+        text-align: center;
+        align-items: center; 
+        justify-content: center; 
+        position: relative;
+        margin-top: -55vw;
+        color: #ffccc4;
+        font-size: 5vw;
+        letter-spacing: 20px;
+        font-family: 'Lora', serif;
+
+    }
 `
 
 export default Navbar;
