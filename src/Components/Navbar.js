@@ -69,7 +69,7 @@ const Navbar = (props) => {
                 <a class="active" href="/home">
                     <span>Home</span>
                 </a>
-                <a href="/">
+                <a href="/exchange">
                     <span>Exchange</span>
                 </a>
                 <a href="/">
